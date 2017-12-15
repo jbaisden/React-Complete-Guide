@@ -11,7 +11,8 @@ state = {
     { name: 'Max', age: 28 },
     { name: 'Manu', age: 29 },
     { name: 'Stephanie', age: 26 }
-  ], username:'default text'
+  ], username:'default text',
+  showPersons: false 
 }
 
 switchNameHandler = (newName) => {
@@ -42,6 +43,11 @@ inputChangedHandler = (event) => {
   console.log(event.target.value)
 }
 
+togglePersonsHandle = () => {
+  const doesShow = this.state.showPersons;
+  this.setState({showPersons: !doesShow});
+}
+
   render() {
     const style = {
         backgroundColor: 'white',
@@ -54,8 +60,10 @@ inputChangedHandler = (event) => {
         <div className="App">
           <button 
           style={style}
-          onClick={() => this.switchNameHandler('Maximilian!!') }>Switch name</button>
+          onClick={this.togglePersonsHandle }>Toggle Persons</button>
 
+      { this.state.showPersons ?
+          <div>
           <Person 
           name={this.state.persons[0].name} 
           age={this.state.persons[0].age} />
@@ -70,7 +78,9 @@ inputChangedHandler = (event) => {
           <Person 
           name={this.state.persons[2].name} 
           age={this.state.persons[2].age} />
-
+        </div>
+        : null 
+        } 
         <Input changed={this.inputChangedHandler } username={this.state.username}  />
         <Output username={this.state.username} />          
         </div>
