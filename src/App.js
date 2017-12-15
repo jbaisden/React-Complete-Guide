@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person'
+import Input from './InputComp/Input'
+import Output from './OutputComp/Output'
 
 class App extends Component {
 
@@ -9,7 +11,7 @@ state = {
     { name: 'Max', age: 28 },
     { name: 'Manu', age: 29 },
     { name: 'Stephanie', age: 26 }
-  ]
+  ], username:'default text'
 }
 
 switchNameHandler = (newName) => {
@@ -29,8 +31,15 @@ nameChangedHandler = (event) => {
       { name: 'Max', age: 28 },
       { name: event.target.value, age: 29 },
       { name: 'Katie', age: 26 }
-    ]    
+    ]
   })
+}
+
+inputChangedHandler = (event) => {
+  this.setState({
+    username:event.target.value    
+  })
+  console.log(event.target.value)
 }
 
   render() {
@@ -61,6 +70,9 @@ nameChangedHandler = (event) => {
           <Person 
           name={this.state.persons[2].name} 
           age={this.state.persons[2].age} />
+
+        <Input changed={this.inputChangedHandler } username={this.state.username}  />
+        <Output username={this.state.username} />          
         </div>
       );
       // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi I\'m a react app!!!'));
