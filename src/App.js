@@ -120,14 +120,26 @@ togglePersonsHandle = () => {
       );
     }
 
+    let classes = [];
+    if(this.state.persons.length <= 2) {
+      classes.push('red');
+    } 
+    
+    if (this.state.persons.length <= 1) {
+      classes.push('bold');      
+    }
+
 
       return(
         <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <p className={classes.join(' ')}>This is really working!</p>
           <button 
           style={style}
           onClick={this.togglePersonsHandle }>Toggle Persons</button>
         {persons}
         <br />
+        <hr/>
         <h3>Assignment 2</h3>
         <input type="text" onChange={this.a2UpdateLengthHandler}  value={this.state.inputTxt} />
         <p>{this.state.inputTxt.length}</p>
@@ -135,6 +147,8 @@ togglePersonsHandle = () => {
         <br />
         {charComponents}
         <br />
+        <hr/>
+        
         <h3>Assignment 1</h3>
         <Input changed={this.inputChangedHandler } username={this.state.username}  />
         <Output username={this.state.username} /> 
