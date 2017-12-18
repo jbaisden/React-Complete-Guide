@@ -85,7 +85,8 @@ togglePersonsHandle = () => {
 
   render() {
     const style = {
-        backgroundColor: 'white',
+        backgroundColor: 'green',
+        color:'white',
         font: 'inherit',
         border: '1px solid blue',
         padding: '8px',
@@ -104,6 +105,7 @@ togglePersonsHandle = () => {
     let persons = null;
 
     if(this.state.showPersons) {
+      style.backgroundColor = 'red';
       persons = (
         <div>
           {this.state.persons.map((person,index) => {
@@ -131,7 +133,6 @@ togglePersonsHandle = () => {
         <p>{this.state.inputTxt.length}</p>
         <ValidationComponent InputLength={this.state.inputTxt.length} />
         <br />
-
         {charComponents}
         <br />
         <h3>Assignment 1</h3>
