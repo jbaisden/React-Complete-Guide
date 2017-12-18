@@ -3,6 +3,8 @@ import './App.css';
 import Person from './Person/Person'
 import Input from './InputComp/Input'
 import Output from './OutputComp/Output'
+import ValidationComponent from './Assignment 2/ValidationComponent'
+import CharComponent from './Assignment 2/CharComponent'
 
 class App extends Component {
 
@@ -12,8 +14,11 @@ state = {
     { id: 'dfht',name: 'Manu', age: 29 },
     { id: 'zxcv',name: 'Stephanie', age: 26 }
   ], username:'default text',
-  showPersons: false 
+  showPersons: false ,
+  inputLength: 0,
+  inputTxt:''
 }
+
 
 deletePersonHandler = (personIndex) => {
   //using slice method on js array to copy an array instead
@@ -54,6 +59,25 @@ inputChangedHandler = (event) => {
   console.log(event.target.value)
 }
 
+
+deleteCharHandler = (index) => {
+  const text = this.state.inputTxt.split('');
+  text.splice(index,1);
+  this.setState({inputTxt:text.join('')});
+  
+  // let inputTxt = this.state.input;
+  // inputTxt = inputTxt.replace(char, '');
+  // console.log('preparing to delete ' + char + ' ' + inputTxt);
+  // this.setState({inputTxt:this.state.inputTxt.replace(char,'')});
+}
+
+a2UpdateLengthHandler = (event) => {
+  this.setState( {
+    inputLength: event.target.value.length,
+    inputTxt:event.target.value
+  });
+}
+
 togglePersonsHandle = () => {
   const doesShow = this.state.showPersons;
   this.setState({showPersons: !doesShow});
@@ -68,6 +92,15 @@ togglePersonsHandle = () => {
         cursor: 'pointer'
     };
     
+    let charComponents = (
+      this.state.inputTxt.split('').map( (char,index) => {
+        return <CharComponent Character={char}
+         click={() => this.deleteCharHandler(index)}
+         key={index}
+         />          
+      })
+    );
+
     let persons = null;
 
     if(this.state.showPersons) {
@@ -83,17 +116,25 @@ togglePersonsHandle = () => {
           })}
         </div>
       );
-
     }
+
 
       return(
         <div className="App">
           <button 
           style={style}
           onClick={this.togglePersonsHandle }>Toggle Persons</button>
-
         {persons}
+        <br />
+        <h3>Assignment 2</h3>
+        <input type="text" onChange={this.a2UpdateLengthHandler}  value={this.state.inputTxt} />
+        <p>{this.state.inputTxt.length}</p>
+        <ValidationComponent InputLength={this.state.inputTxt.length} />
+        <br />
 
+        {charComponents}
+        <br />
+        <h3>Assignment 1</h3>
         <Input changed={this.inputChangedHandler } username={this.state.username}  />
         <Output username={this.state.username} /> 
 
