@@ -5,7 +5,7 @@ import Input from './InputComp/Input'
 import Output from './OutputComp/Output'
 import ValidationComponent from './Assignment 2/ValidationComponent'
 import CharComponent from './Assignment 2/CharComponent'
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
 
@@ -119,7 +119,7 @@ togglePersonsHandle = () => {
       persons = (
         <div>
           {this.state.persons.map((person,index) => {
-            return <Person 
+            return <Person              
               click={() => this.deletePersonHandler(index)}
               name={person.name} 
               age={person.age} 
@@ -140,6 +140,7 @@ togglePersonsHandle = () => {
     }
 
       return(
+        <StyleRoot>
         <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p className={classes.join(' ')}>This is really working!</p>
@@ -163,6 +164,7 @@ togglePersonsHandle = () => {
         <Output username={this.state.username} /> 
 
         </div>
+        </StyleRoot>
       );
       // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi I\'m a react app!!!'));
   }
