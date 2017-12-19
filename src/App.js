@@ -5,7 +5,6 @@ import Input from './InputComp/Input'
 import Output from './OutputComp/Output'
 import ValidationComponent from './Assignment 2/ValidationComponent'
 import CharComponent from './Assignment 2/CharComponent'
-import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
 
@@ -91,11 +90,7 @@ togglePersonsHandle = () => {
         font: 'inherit',
         border: '1px solid blue',
         padding: '8px',
-        cursor: 'pointer',
-        ':hover': {
-          backgroundColor: 'lightgreen',
-          color:'black',
-        }
+        cursor: 'pointer'
     };
     
     let charComponents = (
@@ -110,12 +105,6 @@ togglePersonsHandle = () => {
     let persons = null;
 
     if(this.state.showPersons) {
-      style.backgroundColor = 'red';
-      style[':however'] = {
-        backgroundColor: 'salmon',
-        color:'black'
-      };
-
       persons = (
         <div>
           {this.state.persons.map((person,index) => {
@@ -140,7 +129,6 @@ togglePersonsHandle = () => {
     }
 
       return(
-        <StyleRoot>
         <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p className={classes.join(' ')}>This is really working!</p>
@@ -164,10 +152,9 @@ togglePersonsHandle = () => {
         <Output username={this.state.username} /> 
 
         </div>
-        </StyleRoot>
       );
       // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi I\'m a react app!!!'));
   }
 }
 
-export default Radium(App);
+export default App;
