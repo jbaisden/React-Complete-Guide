@@ -7,8 +7,8 @@
     text-align: center;
 }
 
-/* @media (min-wdith: 500px) {
+@media (min-wdith: 500px) {
     .Person {
         width: 450px;
     }
-} */
+} 
