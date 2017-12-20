@@ -1,7 +1,12 @@
 import React from 'react';
 import classes from './Person.css';
 
+
 const person = (props) => {
+    const rnd = Math.random();
+    if( rnd > .7) {
+        throw new Error('Something went wrong.');
+    }
 
     return (
         <div className={classes.Person} >
