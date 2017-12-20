@@ -83,16 +83,7 @@ togglePersonsHandle = () => {
   this.setState({showPersons: !doesShow});
 }
 
-  render() {
-    const style = {
-        backgroundColor: 'green',
-        color:'white',
-        font: 'inherit',
-        border: '1px solid blue',
-        padding: '8px',
-        cursor: 'pointer'
-    };
-    
+  render() {    
     let charComponents = (
       this.state.inputTxt.split('').map( (char,index) => {
         return <CharComponent Character={char}
@@ -103,6 +94,7 @@ togglePersonsHandle = () => {
     );
 
     let persons = null;
+    let btnClass = '';
 
     if(this.state.showPersons) {
       persons = (
@@ -117,11 +109,13 @@ togglePersonsHandle = () => {
           })}
         </div>
       );
+
+      btnClass = classes.Red;
     }
 
     const assignedClasses = [];
     if(this.state.persons.length <= 2) {
-      assignedClasses.push( classes.red );
+      assignedClasses.push( classes.Red );
     } 
     
     if (this.state.persons.length <= 1) {
@@ -133,7 +127,7 @@ togglePersonsHandle = () => {
         <h1>Hi, I'm a React App</h1>
         <p className={assignedClasses.join(' ')}>This is really working!</p>
           <button 
-          style={style}
+         className={btnClass}
           onClick={this.togglePersonsHandle }>Toggle Persons</button>
         {persons}
         <br />
