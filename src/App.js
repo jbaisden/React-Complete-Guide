@@ -52,31 +52,6 @@ nameChangedHandler = (event, id) => {
   this.setState( { persons:persons});
 }
 
-inputChangedHandler = (event) => {
-  this.setState({
-    username:event.target.value    
-  })
-  console.log(event.target.value)
-}
-
-
-deleteCharHandler = (index) => {
-  const text = this.state.inputTxt.split('');
-  text.splice(index,1);
-  this.setState({inputTxt:text.join('')});
-  
-  // let inputTxt = this.state.input;
-  // inputTxt = inputTxt.replace(char, '');
-  // console.log('preparing to delete ' + char + ' ' + inputTxt);
-  // this.setState({inputTxt:this.state.inputTxt.replace(char,'')});
-}
-
-a2UpdateLengthHandler = (event) => {
-  this.setState( {
-    inputLength: event.target.value.length,
-    inputTxt:event.target.value
-  });
-}
 
 togglePersonsHandle = () => {
   const doesShow = this.state.showPersons;
@@ -149,6 +124,34 @@ togglePersonsHandle = () => {
       );
       // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi I\'m a react app!!!'));
   }
+
+
+  //ASSIGNMENT METHODS
+  inputChangedHandler = (event) => {
+    this.setState({
+      username:event.target.value    
+    })
+    console.log(event.target.value)
+  }  
+  
+  deleteCharHandler = (index) => {
+    const text = this.state.inputTxt.split('');
+    text.splice(index,1);
+    this.setState({inputTxt:text.join('')});
+    
+    // let inputTxt = this.state.input;
+    // inputTxt = inputTxt.replace(char, '');
+    // console.log('preparing to delete ' + char + ' ' + inputTxt);
+    // this.setState({inputTxt:this.state.inputTxt.replace(char,'')});
+  }
+  
+  a2UpdateLengthHandler = (event) => {
+    this.setState( {
+      inputLength: event.target.value.length,
+      inputTxt:event.target.value
+    });
+  }
+
 }
 
 export default App;
