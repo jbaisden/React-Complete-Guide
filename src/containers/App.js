@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from './Person/Person'
-import Input from './InputComp/Input'
-import Output from './OutputComp/Output'
-import ValidationComponent from './Assignment 2/ValidationComponent'
-import CharComponent from './Assignment 2/CharComponent'
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary'; 
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
+//import Person from '../components/Persons/Person/Person';
+import Input from '../components/InputComp/Input';
+import Output from '../components/OutputComp/Output';
+import ValidationComponent from '../components/Assignment 2/ValidationComponent';
+import CharComponent from '../components/Assignment 2/CharComponent';
+//import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'; 
 
 class App extends Component {
 
@@ -70,42 +72,25 @@ togglePersonsHandle = () => {
     );
 
     let persons = null;
-    let btnClass = '';
 
     if(this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map((person,index) => {
-            return <ErrorBoundary  key={person.id}>
-              <Person              
-              click={() => this.deletePersonHandler(index)}
-              name={person.name} 
-              age={person.age}              
-              changed={(event) => this.nameChangedHandler(event, person.id) } />
-              </ErrorBoundary>
-          })}
+            <Persons persons={this.state.persons} 
+            clicked = {this.deletePersonHandler}
+            changed={this.nameChangedHandler} />            
         </div>
       );
 
-      btnClass = classes.Red;
-    }
-
-    const assignedClasses = [];
-    if(this.state.persons.length <= 2) {
-      assignedClasses.push( classes.Red );
-    } 
-    
-    if (this.state.persons.length <= 1) {
-      assignedClasses.push( classes.bold );      
     }
 
       return(
         <div className={classes.App}>
-        <h1>Hi, I'm a React App</h1>
-        <p className={assignedClasses.join(' ')}>This is really working!</p>
-          <button 
-         className={btnClass}
-          onClick={this.togglePersonsHandle }>Toggle Persons</button>
+        <Cockpit 
+          showPersons={this.state.showPersons}
+          persons={this.state.persons}
+          clicked={this.togglePersonsHandle}
+          />
         {persons}
         <br />
         <hr/>
@@ -116,8 +101,7 @@ togglePersonsHandle = () => {
         <br />
         {charComponents}
         <br />
-        <hr/>
-        
+        <hr/>        
         <h3>Assignment 1</h3>
         <Input changed={this.inputChangedHandler } username={this.state.username}  />
         <Output username={this.state.username} /> 
