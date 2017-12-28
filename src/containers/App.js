@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
@@ -9,7 +9,7 @@ import ValidationComponent from '../components/Assignment 2/ValidationComponent'
 import CharComponent from '../components/Assignment 2/CharComponent';
 //import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'; 
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props) {
     super(props);
     console.log('app.js inside constructor', props);
@@ -24,6 +24,24 @@ class App extends Component {
   componentDidMount() {
     console.log('app.js inside componentDidMount');   
   }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('UPDATE app.js inside componentWillReceiveProps');   
+  }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log('UPDATE app.js inside shouldComponentUpdate');   
+  //   return nextProps.persons !== this.props.persons || 
+  //   nextProps.showPersons !== this.props.showPersons ;
+  // }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('UPDATE app.js inside componentWillUpdate', nextProps, nextState);   
+  }
+
+  componentDidUpdate() {
+    console.log('UPDATE app.js inside componentDidUpdate');   
+  }  
 
 state = {
   persons: [
@@ -101,6 +119,7 @@ togglePersonsHandle = () => {
 
       return(
         <div className={classes.App}>
+        <button onClick={ () => {this.setState({showPersons:true})}}> Show Persons</button>
         <Cockpit 
           showPersons={this.state.showPersons}
           persons={this.state.persons}
