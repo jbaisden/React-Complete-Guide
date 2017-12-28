@@ -10,6 +10,20 @@ import CharComponent from '../components/Assignment 2/CharComponent';
 //import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'; 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('app.js inside constructor', props);
+    //can init state via 
+    //this.state = { ... };
+  }
+
+  componentWillMount() {
+    console.log('app.js inside componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('app.js inside componentDidMount');   
+  }
 
 state = {
   persons: [
@@ -62,6 +76,7 @@ togglePersonsHandle = () => {
 }
 
   render() {    
+    console.log('app.js inside render');
     let charComponents = (
       this.state.inputTxt.split('').map( (char,index) => {
         return <CharComponent Character={char}
