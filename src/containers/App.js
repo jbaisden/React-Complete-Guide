@@ -8,6 +8,8 @@ import Output from '../components/OutputComp/Output';
 import ValidationComponent from '../components/Assignment 2/ValidationComponent';
 import CharComponent from '../components/Assignment 2/CharComponent';
 //import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'; 
+import WithClass from '../hoc/WithClass';
+
 
 class App extends PureComponent {
   constructor(props) {
@@ -39,6 +41,7 @@ class App extends PureComponent {
     console.log('UPDATE app.js inside componentWillUpdate', nextProps, nextState);   
   }
 
+  
   componentDidUpdate() {
     console.log('UPDATE app.js inside componentDidUpdate');   
   }  
@@ -118,7 +121,7 @@ togglePersonsHandle = () => {
     }
 
       return(
-        <div className={classes.App}>
+        <WithClass classes={classes.App}>
         <button onClick={ () => {this.setState({showPersons:true})}}> Show Persons</button>
         <Cockpit 
           showPersons={this.state.showPersons}
@@ -140,7 +143,7 @@ togglePersonsHandle = () => {
         <Input changed={this.inputChangedHandler } username={this.state.username}  />
         <Output username={this.state.username} /> 
 
-        </div>
+        </WithClass>
       );
       // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi I\'m a react app!!!'));
   }
